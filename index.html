@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DiveJSON — an open dive-log interchange format</title>
+<meta name="description" content="DiveJSON is an open JSON interchange format for scuba dive logs: full profiles, mixtures, trips, sites, sightings, gear history, and certifications, portable between applications without loss.">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff; --fg: #1a1d21; --muted: #5a6572; --accent: #0b6e99;
+    --code-bg: #f4f6f8; --border: #e2e6ea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171a; --fg: #e6e9ec; --muted: #9aa5b1; --accent: #5db3d9;
+      --code-bg: #1d2126; --border: #2a2f35;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { max-width: 40rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; }
+  h1 { font-size: 2.4rem; margin: 0 0 .3rem; letter-spacing: -0.02em; }
+  .tagline { color: var(--muted); font-size: 1.15rem; margin: 0 0 2rem; }
+  p { margin: 1rem 0; }
+  pre {
+    background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 1rem; overflow-x: auto; font-size: .82rem; line-height: 1.5;
+  }
+  code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  a { color: var(--accent); }
+  ul.links { list-style: none; padding: 0; margin: 2rem 0 0; }
+  ul.links li { margin: .45rem 0; }
+  .status {
+    display: inline-block; border: 1px solid var(--border); border-radius: 999px;
+    padding: .1rem .7rem; font-size: .8rem; color: var(--muted); margin-bottom: 2rem;
+  }
+  footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>DiveJSON</h1>
+  <p class="tagline">An open interchange format for scuba dive logs.</p>
+  <span class="status">v1.0 draft — freezes when the reference round-trip passes</span>
+
+  <p>One JSON document carries a complete logbook — dives with full sampled profiles,
+  gas mixtures, trips, dive sites, marine-life sightings, gear and its service history,
+  certifications — so a diver's data can move between applications without loss.
+  Nothing invented: a value that was never recorded is absent, and no reader fabricates
+  one. One canonical metric unit system. Times keep their UTC offsets. Every
+  cross-reference resolves inside the document.</p>
+
+<pre><code>{
+  "format": "divejson",
+  "version": "1.0",
+  "exported_at": "2026-08-28T10:15:00+00:00",
+  "diver": { "uuid": "019fec35-54b9-7874-a1c7-b504a3e8e778", "name": "Sam Reef" },
+  "dives": [
+    {
+      "uuid": "019fec36-b9ec-71c6-a03e-64f59b8b92b1",
+      "start_time": "2026-04-17T11:49:23+02:00",
+      "duration": 2460,
+      "max_depth": 18.4,
+      "mixtures": [{ "volume": 12.0, "oxygen": 32.0, "start_pressure": 200.0 }],
+      "profile": { "duration": 2460, "depth": { "t": [0, 60, 120], "v": [0, 950, 1840] } }
+    }
+  ]
+}</code></pre>
+
+  <ul class="links">
+    <li>📄 <a href="https://github.com/divejson/divejson/blob/main/spec/divejson.md">The specification</a></li>
+    <li>🧩 <a href="/schema/1.0/divejson.schema.json">JSON Schema</a> (draft 2020-12)</li>
+    <li>🛠️ <a href="https://github.com/divejson/divejson">Spec repository</a> — schema, conformance fixtures, <code>divejson validate</code></li>
+  </ul>
+
+  <p>Media type <code>application/vnd.dive+json</code>, file extension
+  <code>.divejson</code>.</p>
+
+  <footer>Spec prose CC BY 4.0 · schema, fixtures &amp; tools MIT ·
+  <a href="https://github.com/divejson">github.com/divejson</a></footer>
+</main>
+</body>
+</html>
