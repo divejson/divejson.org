@@ -1,0 +1,48 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    # Weekly rebuild so schema changes in divejson/divejson reach the site
+    # without a push here.
+    - cron: "17 4 * * 1"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        # Tolerate the spec repository being empty pre-seed.
+        continue-on-error: true
+        with:
+          repository: divejson/divejson
+          path: _spec
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          if [ -d _spec/schema ]; then
+            cp -r _spec/schema _site/schema
+          else
+            echo "::notice::spec repository carries no schema yet; site ships without /schema"
+          fi
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
