@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DiveJSON — an open dive-log interchange format</title>
-<meta name="description" content="DiveJSON is an open JSON interchange format for scuba dive logs: full profiles, mixtures, trips, sites, sightings, gear history, and certifications, portable between applications without loss.">
+<meta name="description" content="DiveJSON is an open JSON interchange format for scuba dive logs: full profiles, cylinders, trips, courses, sites, sightings, gear history, and certifications, portable between applications without loss.">
 <style>
   :root {
     color-scheme: light dark;
@@ -48,8 +48,9 @@
   <span class="status">v1.0 draft — freezes when the reference round-trip passes</span>
 
   <p>One JSON document carries a complete logbook — dives with full sampled profiles,
-  gas mixtures, trips, dive sites, marine-life sightings, gear and its service history,
-  certifications — so a diver's data can move between applications without loss.
+  gas mixtures, trips, training courses, dive sites, marine-life sightings, gear and its
+  service history, certifications — so a diver's data can move between applications
+  without loss.
   Nothing invented: a value that was never recorded is absent, and no reader fabricates
   one. One canonical metric unit system. Times keep their UTC offsets. Every
   cross-reference resolves inside the document.</p>
