@@ -8,8 +8,13 @@ and the deploy workflow copies the schema directory from that repository into th
 publish time, so `https://divejson.org/schema/…` always serves the schema of record
 (every DiveJSON schema's `$id` points there). Nothing normative is duplicated here.
 
-Deploys run on push, weekly (to pick up spec-repository changes), and on manual
-dispatch.
+Deploys run on push here, on manual dispatch, and daily. They also run when
+[divejson/divejson](https://github.com/divejson/divejson) asks them to: a schema change
+that passes conformance there triggers this workflow, so the schema of record reaches the
+site in about a minute rather than waiting for a scheduled rebuild. That trigger
+authenticates as a GitHub App, and if it is ever revoked it fails silently from this
+repository's side — the daily rebuild is the safety net that keeps the site tracking the
+spec regardless.
 
 ## The mark
 
