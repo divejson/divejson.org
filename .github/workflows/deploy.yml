@@ -35,7 +35,7 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p _site
-          cp index.html _site/
+          cp index.html favicon.svg favicon.ico _site/
           if [ -d _spec/schema ]; then
             cp -r _spec/schema _site/schema
           else

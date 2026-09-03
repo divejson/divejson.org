@@ -10,3 +10,14 @@ publish time, so `https://divejson.org/schema/…` always serves the schema of r
 
 Deploys run on push, weekly (to pick up spec-repository changes), and on manual
 dispatch.
+
+## The mark
+
+`favicon.svg` is the DiveJSON mark, and the same artwork serves as the divejson
+organisation's avatar on GitHub. `favicon.ico` is generated from it at 16, 32 and 48px;
+the 16px size carries the dive profile alone, because at that size the full mark's stroke
+falls below one pixel and the braces blur into it.
+
+Both are named individually in the deploy workflow's assemble step. Anything added beside
+them has to be added to that `cp` line as well — the workflow copies named files rather
+than the repository, so a new asset is otherwise committed but never served.
