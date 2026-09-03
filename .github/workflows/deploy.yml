@@ -5,9 +5,15 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    # Weekly rebuild so schema changes in divejson/divejson reach the site
-    # without a push here.
-    - cron: "17 4 * * 1"
+    # A safety net, not the delivery mechanism. divejson/divejson triggers this
+    # workflow itself once a schema change passes conformance there, so the
+    # schema normally reaches the site in about a minute. That trigger runs on a
+    # GitHub App, and if the App is ever uninstalled or has its permission
+    # revoked the dispatch fails over there - silently, from this repository's
+    # point of view, since nothing here would report it. This rebuild is what
+    # stops that turning into a site that has quietly stopped tracking the spec.
+    # Daily rather than weekly so the undetected window is a day, not a week.
+    - cron: "17 4 * * *"
 
 permissions:
   contents: read
