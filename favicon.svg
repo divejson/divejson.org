@@ -4,7 +4,7 @@
      palette; the format is deliberately not tied to it. The same artwork is the
      divejson organisation's avatar on GitHub.
 
-     The profile sits 5 units below the braces' centre. Its bounding box centres
+     The profile sits 3 units below the braces' centre. Its bounding box centres
      at y=50 on its own, but a V carries its ink at the top, so centring it
      geometrically reads as sitting high once the mark is small. The offset is
      optical, not arithmetic, and should not be "corrected" back to centre.
@@ -19,6 +19,6 @@
   <g fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
     <path d="M32 24 C25 24 25 28 25 34 C25 42 22 50 15 50 C22 50 25 58 25 66 C25 72 25 76 32 76"/>
     <path d="M68 24 C75 24 75 28 75 34 C75 42 78 50 85 50 C78 50 75 58 75 66 C75 72 75 76 68 76"/>
-    <path d="M36 41 L45 67 L55 67 L64 41"/>
+    <path d="M36 39 L45 65 L55 65 L64 39"/>
   </g>
 </svg>
