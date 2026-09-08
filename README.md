@@ -3,8 +3,10 @@
 Source for <https://divejson.org>, the DiveJSON format's site, served by GitHub Pages.
 
 The site is deliberately thin: the normative content — specification, JSON Schema,
-fixtures, validator — lives in [divejson/divejson](https://github.com/divejson/divejson),
-and the deploy workflow copies the schema directory from that repository into the site at
+conformance fixtures — lives in [divejson/divejson](https://github.com/divejson/divejson),
+and the tools that read and check it — the validator, the converters, the conformance
+runner — in [divejson/divejson-py](https://github.com/divejson/divejson-py). The deploy
+workflow copies the schema directory from the specification repository into the site at
 publish time, so `https://divejson.org/schema/…` always serves the schema of record
 (every DiveJSON schema's `$id` points there). Nothing normative is duplicated here.
 
