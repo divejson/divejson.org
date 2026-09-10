@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DiveJSON — an open dive-log interchange format</title>
-<meta name="description" content="DiveJSON is an open JSON interchange format for scuba dive logs: full profiles, cylinders, trips, courses, sites, sightings, gear history, and certifications, portable between applications without loss.">
+<meta name="description" content="DiveJSON is an open JSON interchange format for scuba dive logs: full profiles from every computer worn, cylinders, trips, courses, sites, sightings, gear history, and certifications, portable between applications without loss.">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -50,10 +50,10 @@
   <p class="tagline">An open interchange format for scuba dive logs.</p>
   <span class="status">v1.0 draft — freezes when the reference round-trip passes</span>
 
-  <p>One JSON document carries a complete logbook — dives with full sampled profiles,
-  gas mixtures, trips, training courses, dive sites, marine-life sightings, gear and its
-  service history, certifications — so a diver's data can move between applications
-  without loss.
+  <p>One JSON document carries a complete logbook — dives with full sampled profiles from
+  every computer worn, gas mixtures, trips, training courses, dive sites, marine-life
+  sightings, gear and its service history, certifications — so a diver's data can move
+  between applications without loss.
   Nothing invented: a value that was never recorded is absent, and no reader fabricates
   one. One canonical metric unit system. Times keep their UTC offsets. Every
   cross-reference resolves inside the document.</p>
@@ -70,7 +70,12 @@
       "duration": 2460,
       "max_depth": 18.4,
       "cylinders": [{ "volume": 12.0, "oxygen": 32.0, "start_pressure": 200.0 }],
-      "profile": { "duration": 2460, "depth": { "times": [0, 60, 120], "values": [0, 950, 1840] } }
+      "recordings": [
+        {
+          "device": { "brand": "Suunto", "model": "Ocean" },
+          "profile": { "duration": 2460, "depth": { "times": [0, 60, 120], "values": [0, 950, 1840] } }
+        }
+      ]
     }
   ]
 }</code></pre>
